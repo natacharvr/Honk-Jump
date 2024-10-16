@@ -9,24 +9,28 @@ public class GameManagerScript : MonoBehaviour
 {
     public GameObject platformGreen;
     private int platformCount = 10;
-    public GameObject panel;
     public Transform camera;
     public float score;
-    public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI scoreText;
     private float highScore;
+    private float maxHeight;
 
+    // game over objects
+    public GameObject panel;
+    public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI finalScoreText;
 
     void Start()
     {
-        LoadHighScore();
-        SetHighScoreText();
+        SetScoreText();
         panel.SetActive(false);
-        Vector3 spawnPos = new Vector3();
+        Vector3 spawnPos = new Vector3(0, -1, 0);
 
         for (int i = 0; i <  platformCount; i++)
         {
             spawnPos.x = Random.Range(-2.5f, 2.5f);
             spawnPos.y += Random.Range(0.0f, 2f);
+            maxHeight = spawnPos.y;
             Instantiate(platformGreen, spawnPos, Quaternion.identity);
         }
     }
@@ -34,12 +38,7 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         score = Mathf.Max(camera.position.y, score);
-        if (score > highScore)
-        {
-            highScore = score;
-            PlayerPrefs.SetFloat("highScore", highScore);
-            SetHighScoreText();
-        }
+        SetScoreText();
     }
 
     void FixedUpdate()
@@ -53,7 +52,8 @@ public class GameManagerScript : MonoBehaviour
             {
                 Vector3 spawnPos = new Vector3();
                 spawnPos.x = Random.Range(-2.5f, 2.5f);
-                spawnPos.y = camera.transform.position.y + 5 + Random.Range(0.2f, 3f);
+                spawnPos.y = Mathf.Max(maxHeight + Random.Range(0.3f, 2f), camera.transform.position.y + 5);
+                maxHeight = spawnPos.y;
                 platform.transform.position = spawnPos;
             }
         }
@@ -64,7 +64,14 @@ public class GameManagerScript : MonoBehaviour
 
         panel.SetActive(true);  
         panel.GetComponent<Animator>().Play("PanelAnim");
-        Debug.Log("Game Over");
+
+        LoadHighScore();
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetFloat("highScore", highScore);
+        }
+        //Debug.Log("Game Over");
     }
 
     public void Restart()
@@ -81,8 +88,11 @@ public class GameManagerScript : MonoBehaviour
     {
         highScore = PlayerPrefs.GetFloat("highScore", -1);
     }
-    void SetHighScoreText()
+
+    void SetScoreText()
     {
-        highScoreText.text = "Best : " + highScore.ToString();
+        scoreText.text = "Score: " + score.ToString("F0");
+        finalScoreText.text = "your score: " + score.ToString("F0");
+        highScoreText.text = "your high score: " + highScore.ToString("F0");
     }
 }
