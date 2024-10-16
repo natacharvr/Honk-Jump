@@ -10,7 +10,7 @@ public class BlackHoleScript : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gameManager.GetComponent<GameManagerScript>().GameOver();
         player.SetActive(false);
+        gameManager.GetComponent<GameManagerScript>().GameOver();
     }
 }

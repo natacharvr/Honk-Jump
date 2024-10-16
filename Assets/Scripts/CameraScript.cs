@@ -28,13 +28,12 @@ public class CameraScript : MonoBehaviour
                 // make camera go down
                 gameManager.GetComponent<GameManagerScript>().GameOver();
                 gameOver = true;
-                StartCoroutine(moveCameraDown());
+                //StartCoroutine(moveCameraDown());
             }
         }
     }
-    IEnumerator moveCameraDown()
+    public IEnumerator moveCameraDown()
     {
-
         for (int i = 0; i < 100; i++)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);

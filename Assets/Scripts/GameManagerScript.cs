@@ -61,7 +61,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void GameOver()
     {
-
+        StartCoroutine(camera.GetComponent<CameraScript>().moveCameraDown());
         panel.SetActive(true);  
         panel.GetComponent<Animator>().Play("PanelAnim");
 
