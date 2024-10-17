@@ -10,6 +10,9 @@ public class GameManagerScript : MonoBehaviour
     // platflorms
     public GameObject platformGreen;
     private int platformCount = 10;
+    public GameObject platformBlue;
+    public GameObject platformBrown;
+
 
     // black hole
     public GameObject blackHole;
@@ -26,6 +29,9 @@ public class GameManagerScript : MonoBehaviour
     public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI finalScoreText;
 
+    // spawn conidition
+    float yPosCondition = 0.0f;
+
     void Start()
     {
         SetScoreText();
@@ -35,7 +41,7 @@ public class GameManagerScript : MonoBehaviour
         for (int i = 0; i <  platformCount; i++)
         {
             spawnPos.x = Random.Range(-2.5f, 2.5f);
-            spawnPos.y += Random.Range(0.0f, 2f);
+            spawnPos.y += Random.Range(0.3f, 1.5f);
             maxHeight = spawnPos.y;
             Instantiate(platformGreen, spawnPos, Quaternion.identity);
         }
@@ -50,32 +56,37 @@ public class GameManagerScript : MonoBehaviour
     {
         score = Mathf.Max(camera.position.y, score);
         SetScoreText();
+
+        if (camera.position.y > yPosCondition)
+        {
+            spawnGreen();
+            spawnBlue();
+            spawnBrown();
+            spawnBlackHole();
+        }
     }
 
     void FixedUpdate()
     {
-        float bottom = camera.position.y - 6;
+        float bottom = camera.position.y - 5;
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-        GameObject blackHole = GameObject.FindGameObjectsWithTag("BlackHole")[0];
+        GameObject[] blackHoles = GameObject.FindGameObjectsWithTag("BlackHole");
 
         foreach (GameObject platform in platforms)
         {
             if (platform.transform.position.y < bottom)
             {
-                Vector3 spawnPos = new Vector3();
-                spawnPos.x = Random.Range(-2.5f, 2.5f);
-                spawnPos.y = Mathf.Max(maxHeight + Random.Range(0.3f, 2f), camera.transform.position.y + 5);
-                maxHeight = spawnPos.y;
-                platform.transform.position = spawnPos;
+                Destroy(platform);
             }
         }
 
-        if ((blackHole != null) && (blackHole.transform.position.y < bottom))
+
+        foreach (GameObject blackHole in blackHoles)
         {
-            var spawnPosBlackHole = new Vector3();
-            spawnPosBlackHole.x = Random.Range(-2.5f, 2.5f);
-            spawnPosBlackHole.y = Random.Range(10f, 50f) + camera.transform.position.y;
-            blackHole.transform.position = spawnPosBlackHole;
+            if (blackHole.transform.position.y < bottom)
+            {
+                Destroy(blackHole);
+            }
         }
     }
 
@@ -92,7 +103,6 @@ public class GameManagerScript : MonoBehaviour
             highScore = score;
             PlayerPrefs.SetFloat("highScore", highScore);
         }
-        //Debug.Log("Game Over");
     }
 
     public void Restart()
@@ -116,4 +126,59 @@ public class GameManagerScript : MonoBehaviour
         finalScoreText.text = "your score: " + score.ToString("F0");
         highScoreText.text = "your high score: " + highScore.ToString("F0");
     }
+
+
+    Vector3 spawnPos(bool updateHeight = true)
+    {
+        Vector3 spawnPos = new Vector3();
+        spawnPos.x = Random.Range(-2.5f, 2.5f);
+        spawnPos.y = Mathf.Max(maxHeight + Random.Range(0.4f, 1.5f), camera.transform.position.y + 5);
+
+        yPosCondition = yPosCondition + spawnPos.y - maxHeight;
+        if (updateHeight) {
+            maxHeight = spawnPos.y;
+        }
+        return spawnPos;
+    }
+
+    void spawnGreen(bool force = false)
+    {
+        float spawnProb = Random.Range(0.0f, 1.0f);
+        if (force) {
+            spawnProb = 1.0f;
+            Debug.Log("force");
+        }
+        if (spawnProb > 0.1)
+        {
+            Instantiate(platformGreen, spawnPos(), Quaternion.identity);
+        }
+    }
+
+    void spawnBlue()
+    {
+        float spawnProb = Random.Range(0.0f, 1.0f);
+        if (spawnProb > 0.5)
+        {
+            Instantiate(platformBlue, spawnPos(), Quaternion.identity);
+        }
+    }
+
+    void spawnBlackHole()
+    {
+        float spawnProb = Random.Range(0.0f, 1.0f);
+        if (spawnProb > 0.9)
+        {
+            Instantiate(blackHole, spawnPos(false), Quaternion.identity);
+        }
+    }
+
+    void spawnBrown()
+    {
+        float spawnProb = Random.Range(0.0f, 1.0f);
+        if (spawnProb > 0.5)
+        {
+            Instantiate(platformBrown, spawnPos(false), Quaternion.identity);
+        }
+    }
+
 }

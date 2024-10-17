@@ -34,12 +34,10 @@ public class CameraScript : MonoBehaviour
     }
     public IEnumerator moveCameraDown()
     {
-        for (int i = 0; i < 100; i++)
+        gameOver = true;
+        for (int i = 0; i < 130; i++)
         {
-            Debug.Log("Camera going down" + i);
-            Vector3 test = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
-            Debug.Log(transform.position.y + " "+ test.y);
-            transform.position = test;
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
             yield return new WaitForSeconds(0.005f);
         }
     }
