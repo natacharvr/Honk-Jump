@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BlackHoleScript : MonoBehaviour
 {
-    public GameObject gameManager;
-    public GameObject player;
+    private GameObject gameManager;
     // Start is called before the first frame update
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        player.SetActive(false);
+        gameManager = GameObject.Find("GameManager");
         gameManager.GetComponent<GameManagerScript>().GameOver();
+        collision.gameObject.SetActive(false);
     }
 }

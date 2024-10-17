@@ -36,7 +36,10 @@ public class CameraScript : MonoBehaviour
     {
         for (int i = 0; i < 100; i++)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+            Debug.Log("Camera going down" + i);
+            Vector3 test = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+            Debug.Log(transform.position.y + " "+ test.y);
+            transform.position = test;
             yield return new WaitForSeconds(0.005f);
         }
     }

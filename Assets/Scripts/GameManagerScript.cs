@@ -7,9 +7,15 @@ using TMPro;
 
 public class GameManagerScript : MonoBehaviour
 {
+    // platflorms
     public GameObject platformGreen;
     private int platformCount = 10;
+
+    // black hole
+    public GameObject blackHole;
+
     public Transform camera;
+    // score
     public float score;
     public TextMeshProUGUI scoreText;
     private float highScore;
@@ -33,6 +39,11 @@ public class GameManagerScript : MonoBehaviour
             maxHeight = spawnPos.y;
             Instantiate(platformGreen, spawnPos, Quaternion.identity);
         }
+
+        Vector3 spawnPosBlackHole = new Vector3();
+        spawnPosBlackHole.x = Random.Range(-2.5f, 2.5f);
+        spawnPosBlackHole.y = Random.Range(5f, 10f);
+        Instantiate(blackHole, spawnPosBlackHole, Quaternion.identity);
     }
 
     void Update()
@@ -43,8 +54,9 @@ public class GameManagerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        float bottom = camera.position.y - 5;
+        float bottom = camera.position.y - 6;
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+        GameObject blackHole = GameObject.FindGameObjectsWithTag("BlackHole")[0];
 
         foreach (GameObject platform in platforms)
         {
@@ -57,10 +69,19 @@ public class GameManagerScript : MonoBehaviour
                 platform.transform.position = spawnPos;
             }
         }
+
+        if ((blackHole != null) && (blackHole.transform.position.y < bottom))
+        {
+            var spawnPosBlackHole = new Vector3();
+            spawnPosBlackHole.x = Random.Range(-2.5f, 2.5f);
+            spawnPosBlackHole.y = Random.Range(10f, 50f) + camera.transform.position.y;
+            blackHole.transform.position = spawnPosBlackHole;
+        }
     }
 
     public void GameOver()
     {
+        Debug.Log("active une fois Game Over");
         StartCoroutine(camera.GetComponent<CameraScript>().moveCameraDown());
         panel.SetActive(true);  
         panel.GetComponent<Animator>().Play("PanelAnim");
