@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlatformScript : MonoBehaviour
 {
-    private float jumpForce = 8f;
+    public float jumpForce = 8f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.relativeVelocity.y <= 0f)
+        if (collision.relativeVelocity.y <= 0.1f)
         {
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
             if (rb != null)
@@ -18,6 +18,10 @@ public class PlatformScript : MonoBehaviour
                 rb.velocity = velocity;
             }
             collision.gameObject.GetComponent<Animator>().SetTrigger("collisionTrigger");
+            if (GetComponent<Animator>() != null)
+            {
+                GetComponent<Animator>().SetTrigger("collisionTrigger");
+            }
         }
     }
 }

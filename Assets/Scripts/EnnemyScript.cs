@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemyScript : MonoBehaviour
+public class BlackHoleScript : MonoBehaviour
 {
     private GameObject gameManager;
     // Start is called before the first frame update

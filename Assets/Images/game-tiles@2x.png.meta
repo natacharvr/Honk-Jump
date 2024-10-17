@@ -222,6 +222,153 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ennemy-fly-1
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 934
+        width: 161
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5abb587a48bb5d548b64ae37ac8631cd
+      internalID: -483807985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ennemy-fly-2
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 934
+        width: 165
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43819cd4b1f883546a62644a2be9e268
+      internalID: 1322571427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ennemy-fly-3
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 935
+        width: 162
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c2a4a19cee74e34c9b38df7c3278820
+      internalID: 812013190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ennemy-fly-4
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 935
+        width: 160
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7af6fcd952718a459b5ed100c396479
+      internalID: -830232949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ennemy-fly-5
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 843
+        width: 155
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06af041a72e362f4a9d3f8d491532859
+      internalID: -56423532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spring-1
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 803
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae9f9911ae1cabc45a4f8b2c641f0498
+      internalID: -167949649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spring-2
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 706
+        width: 38
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6624a63f6230bd418b3f0b991c77852
+      internalID: -1976642156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -233,12 +380,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      ennemy-fly-1: -483807985
+      ennemy-fly-2: 1322571427
+      ennemy-fly-3: 812013190
+      ennemy-fly-4: -830232949
+      ennemy-fly-5: -56423532
       platform-blue: -246007506
       platform-brown-1: 1281233372
       platform-brown-2: -637223841
       platform-brown-3: 586810165
       platform-brown-4: 503755465
       platform-green: -737346463
+      spring-1: -167949649
+      spring-2: -1976642156
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

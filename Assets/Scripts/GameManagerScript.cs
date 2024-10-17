@@ -12,10 +12,15 @@ public class GameManagerScript : MonoBehaviour
     private int platformCount = 10;
     public GameObject platformBlue;
     public GameObject platformBrown;
+    public GameObject spring;
 
+    // difficulty
+    float minSpace = 0.4f;
+    float maxSpace = 2f;
 
-    // black hole
+    // Ennemies
     public GameObject blackHole;
+    public GameObject ennemyFly;
 
     public Transform camera;
     // score
@@ -55,6 +60,7 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         score = Mathf.Max(camera.position.y, score);
+        minSpace = Mathf.Min(0.4f + score / 100, maxSpace);
         SetScoreText();
 
         if (camera.position.y > yPosCondition)
@@ -62,15 +68,12 @@ public class GameManagerScript : MonoBehaviour
             spawnGreen();
             spawnBlue();
             spawnBrown();
-            spawnBlackHole();
+            spawnEnnemy();
         }
-    }
 
-    void FixedUpdate()
-    {
         float bottom = camera.position.y - 5;
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-        GameObject[] blackHoles = GameObject.FindGameObjectsWithTag("BlackHole");
+        GameObject[] ennemies = GameObject.FindGameObjectsWithTag("Ennemy");
 
         foreach (GameObject platform in platforms)
         {
@@ -80,19 +83,17 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
-
-        foreach (GameObject blackHole in blackHoles)
+        foreach (GameObject ennemy in ennemies)
         {
-            if (blackHole.transform.position.y < bottom)
+            if (ennemy.transform.position.y < bottom)
             {
-                Destroy(blackHole);
+                Destroy(ennemy);
             }
         }
     }
 
     public void GameOver()
     {
-        Debug.Log("active une fois Game Over");
         StartCoroutine(camera.GetComponent<CameraScript>().moveCameraDown());
         panel.SetActive(true);  
         panel.GetComponent<Animator>().Play("PanelAnim");
@@ -132,10 +133,10 @@ public class GameManagerScript : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3();
         spawnPos.x = Random.Range(-2.5f, 2.5f);
-        spawnPos.y = Mathf.Max(maxHeight + Random.Range(0.4f, 1.5f), camera.transform.position.y + 5);
+        spawnPos.y = Mathf.Max(maxHeight + Random.Range(minSpace, maxSpace), camera.transform.position.y + 5);
 
-        yPosCondition = yPosCondition + spawnPos.y - maxHeight;
         if (updateHeight) {
+            yPosCondition = yPosCondition + spawnPos.y - maxHeight;
             maxHeight = spawnPos.y;
         }
         return spawnPos;
@@ -150,7 +151,13 @@ public class GameManagerScript : MonoBehaviour
         }
         if (spawnProb > 0.1)
         {
-            Instantiate(platformGreen, spawnPos(), Quaternion.identity);
+            Vector3 pos = spawnPos();
+            if (spawnProb > 0.8)
+            {
+                float posx = Random.Range(-0.25f, 0.25f);
+                Instantiate(spring, new Vector3(pos.x + posx, pos.y + 0.2f, pos.z) , Quaternion.identity);
+            }
+            Instantiate(platformGreen, pos, Quaternion.identity);
         }
     }
 
@@ -163,6 +170,26 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    void spawnEnnemyFly()
+    {
+        float spawnProb = Random.Range(0.0f, 1.0f);
+        if (spawnProb > 0.9)
+        {
+            Instantiate(ennemyFly, spawnPos(false), Quaternion.identity);
+        }
+    }
+
+    void spawnEnnemy()
+    {
+        float spawnProb = Random.Range(0.0f, 1.0f);
+        if (spawnProb > 0.5)
+        {
+            spawnEnnemyFly();
+        } else
+        {
+            spawnBlackHole();
+        }
+    }
     void spawnBlackHole()
     {
         float spawnProb = Random.Range(0.0f, 1.0f);
