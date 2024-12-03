@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2786833640549512573}
   - component: {fileID: 1713593239075555475}
   - component: {fileID: 1180945084534830112}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ab325be574d144bb9211b7fd8a8443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpForce: 8
 --- !u!251 &1713593239075555475
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -136,7 +137,7 @@ GameObject:
   - component: {fileID: 3589245207191974575}
   - component: {fileID: 32161119201674459}
   - component: {fileID: 6368517995740685001}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ennemyFly
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
@@ -152,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 8898366422852516995}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.045, y: -1.415, z: 0}
+  m_LocalPosition: {x: -0.045, y: -1.415, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8708060142819665313}
   - component: {fileID: 7513243623981117302}
   - component: {fileID: 6287131267908319799}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BlackHole
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3446495962803216968}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.55, y: 2.474, z: 0}
+  m_LocalPosition: {x: 1.55, y: 2.474, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

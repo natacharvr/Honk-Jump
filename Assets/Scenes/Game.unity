@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -180, y: 662}
+  m_AnchoredPosition: {x: -171, y: 649}
   m_SizeDelta: {x: 134.801, y: 29.4109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &128020910
@@ -1020,10 +1020,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScaleFactor: 0.5
+  m_ReferenceResolution: {x: 700, y: 1400}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1888,6 +1888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: platformGreen
       objectReference: {fileID: 0}
+    - target: {fileID: 1852606365813640966, guid: ceb0a984d7691b74782cc44faf2bb834, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3878640575310582300, guid: ceb0a984d7691b74782cc44faf2bb834, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1898,7 +1902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3878640575310582300, guid: ceb0a984d7691b74782cc44faf2bb834, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3878640575310582300, guid: ceb0a984d7691b74782cc44faf2bb834, type: 3}
       propertyPath: m_LocalRotation.w

@@ -41,7 +41,7 @@ public class GameManagerScript : MonoBehaviour
     {
         SetScoreText();
         panel.SetActive(false);
-        Vector3 spawnPos = new Vector3(0, -1, 0);
+        Vector3 spawnPos = new Vector3(0, -1, -1);
 
         for (int i = 0; i <  platformCount; i++)
         {
@@ -51,7 +51,7 @@ public class GameManagerScript : MonoBehaviour
             Instantiate(platformGreen, spawnPos, Quaternion.identity);
         }
 
-        Vector3 spawnPosBlackHole = new Vector3();
+        Vector3 spawnPosBlackHole = new Vector3(0, -1, -1);
         spawnPosBlackHole.x = Random.Range(-2.5f, 2.5f);
         spawnPosBlackHole.y = Random.Range(5f, 10f);
         Instantiate(blackHole, spawnPosBlackHole, Quaternion.identity);
@@ -131,7 +131,7 @@ public class GameManagerScript : MonoBehaviour
 
     Vector3 spawnPos(bool updateHeight = true)
     {
-        Vector3 spawnPos = new Vector3();
+        Vector3 spawnPos = new Vector3(0,0,-1);
         spawnPos.x = Random.Range(-2.5f, 2.5f);
         spawnPos.y = Mathf.Max(maxHeight + Random.Range(minSpace, maxSpace), camera.transform.position.y + 5);
 
